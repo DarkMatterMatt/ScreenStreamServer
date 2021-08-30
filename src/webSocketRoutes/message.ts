@@ -6,9 +6,9 @@ export default new WebSocketRoute("message")
         const ws = route.getWebSocket();
 
         // parse args
-        const { message } = data.json;
-        if (typeof message !== "string") {
-            route.error("Invalid or missing message.");
+        const message = data.json.data;
+        if (message == null) {
+            route.error("Invalid or missing data.");
             return;
         }
 
@@ -38,8 +38,9 @@ export default new WebSocketRoute("message")
 
         // send messages
         toSendTo.forEach(ws2 => ws2.send(JSON.stringify({
-            message,
             route: route.name,
+            message: "Data from peer.",
+            data: message,
         })));
 
         route.success({
