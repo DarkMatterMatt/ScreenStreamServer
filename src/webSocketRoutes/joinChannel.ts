@@ -45,6 +45,7 @@ export default new WebSocketRoute("joinChannel")
 
         route.success({
             message: "Joined channel.",
+            channelId,
             numberOfMembers: channel.length,
         });
     });
