@@ -16,8 +16,8 @@ process.on("uncaughtException", err => {
 });
 
 const app = env.USE_SSL ? uWS.SSLApp({
-    key_file_name: env.KEY_FILE_NAME,
-    cert_file_name: env.CERT_FILE_NAME,
+    cert_file_name: env.SSL_CERT_FILE,
+    key_file_name: env.SSL_KEY_FILE,
 }) : uWS.App();
 
 (async () => {
