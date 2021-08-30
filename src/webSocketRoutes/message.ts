@@ -38,7 +38,7 @@ export default new WebSocketRoute("message")
 
         // send messages
         toSendTo.forEach(ws2 => ws2.send(JSON.stringify({
-            route: route.name,
+            route: "peer",
             message: "Data from peer.",
             data: message,
         })));

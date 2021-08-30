@@ -61,6 +61,16 @@ const app = env.USE_SSL ? uWS.SSLApp({
         },
 
         close: ws => {
+            // remove ws from channels
+            const channelId = webSockets.get(ws);
+            if (channelId != null) {
+                const channel = channels.get(channelId);
+                if (channel != null) {
+                    channel.splice(channel.indexOf(ws), 1);
+                }
+            }
+
+            // remove ws
             webSockets.delete(ws);
         },
 
